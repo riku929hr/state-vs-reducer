@@ -1,4 +1,4 @@
-import { type FC, useState, ChangeEvent, SyntheticEvent } from 'react';
+import { type FC, useState, type ChangeEvent, type SyntheticEvent } from 'react';
 
 import {
   Box,
@@ -10,14 +10,12 @@ import {
   Select,
 } from '@chakra-ui/react';
 
-import ReactSelect from 'react-select';
-
-import { wrappingType, prefectrues } from 'schemas/constants';
+import { wrappingType, prefectures } from 'schemas/constants';
 
 const UseStateForm: FC = () => {
   const [zipcode, setZipcode] = useState<string>('');
   const [prefecture, setPrefecture] = useState<
-    keyof typeof prefectrues | undefined
+    keyof typeof prefectures | undefined
   >();
   const [city, setCity] = useState<string>('');
   const [address, setAddress] = useState<string>('');
@@ -62,18 +60,23 @@ const UseStateForm: FC = () => {
           maxLength={7}
           value={zipcode}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setZipcode(e.target.value)
+            { setZipcode(e.target.value); }
           }
         />
         <FormLabel htmlFor="prefecture" mt={4}>
           都道府県
         </FormLabel>
-        <ReactSelect
-          options={prefectrues.map((pref) => ({ value: pref, label: pref }))}
-          value={{ value: prefecture, label: prefecture }}
-          onChange={(e) => setPrefecture(e?.value ?? '')}
-        />
-
+        <Select onChange={
+          (e: ChangeEvent<HTMLSelectElement>) => {
+            setPrefecture(e.target.value as keyof typeof prefectures);
+          }
+        }>
+          {prefectures.map((pref) => (
+            <option key={pref} value={pref}>
+              {pref}
+            </option>
+          ))}
+        </Select>
         <FormLabel htmlFor="city" mt={4}>
           市区町村
         </FormLabel>
@@ -81,7 +84,7 @@ const UseStateForm: FC = () => {
           size="md"
           value={city}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setCity(e.target.value)
+            { setCity(e.target.value); }
           }
         />
         <FormLabel htmlFor="address" mt={4}>
@@ -91,7 +94,7 @@ const UseStateForm: FC = () => {
           size="md"
           value={address}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setAddress(e.target.value)
+            { setAddress(e.target.value); }
           }
         />
         <FormLabel htmlFor="building" mt={4}>
@@ -101,7 +104,7 @@ const UseStateForm: FC = () => {
           size="md"
           value={building}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setBuilding(e.target.value)
+            { setBuilding(e.target.value); }
           }
         />
         <FormLabel htmlFor="wrapping" mt={4}>
@@ -109,7 +112,7 @@ const UseStateForm: FC = () => {
         </FormLabel>
         <Select
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            setWrapping(e.target.value as keyof typeof wrappingType)
+            { setWrapping(e.target.value as keyof typeof wrappingType); }
           }
           value={wrapping}
         >
@@ -121,7 +124,7 @@ const UseStateForm: FC = () => {
         </Select>
         <Checkbox
           checked={isAgreed}
-          onChange={(e) => setIsAgreed(e.target.checked)}
+          onChange={(e) => { setIsAgreed(e.target.checked); }}
         >
           規約に同意する
         </Checkbox>

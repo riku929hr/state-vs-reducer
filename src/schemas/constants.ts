@@ -5,7 +5,7 @@ export const wrappingType = {
   yellow: 'ギフトラッピング（黄）',
 } as const;
 
-export const prefectrues = [
+export const prefectures = [
   '北海道',
   '青森県',
   '岩手県',
