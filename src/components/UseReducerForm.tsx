@@ -85,12 +85,12 @@ const UseReducerForm: FC = () => {
           size="md"
           maxLength={7}
           value={formState.zipCode}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { dispatch({
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
               type: ActionTypes.updated,
               payload: { zipCode: e.target.value },
-            }); }
-          }
+            });
+          }}
         />
         <FormLabel htmlFor="prefecture" mt={4}>
           都道府県
@@ -112,12 +112,12 @@ const UseReducerForm: FC = () => {
         <Input
           size="md"
           value={formState.city}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { dispatch({
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
               type: ActionTypes.updated,
               payload: { city: e.target.value },
-            }); }
-          }
+            });
+          }}
         />
         <FormLabel htmlFor="address" mt={4}>
           番地
@@ -125,12 +125,12 @@ const UseReducerForm: FC = () => {
         <Input
           size="md"
           value={formState.address}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { dispatch({
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
               type: ActionTypes.updated,
               payload: { address: e.target.value },
-            }); }
-          }
+            });
+          }}
         />
         <FormLabel htmlFor="building" mt={4}>
           建物名・部屋番号
@@ -138,26 +138,26 @@ const UseReducerForm: FC = () => {
         <Input
           size="md"
           value={formState.building}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { dispatch({
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            dispatch({
               type: ActionTypes.updated,
               payload: { building: e.target.value },
-            }); }
-          }
+            });
+          }}
         />
         <FormLabel htmlFor="wrapping" mt={4}>
           包装オプション
         </FormLabel>
         <Select
           value={formState.wrapping}
-          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            { dispatch({
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+            dispatch({
               type: ActionTypes.updated,
               payload: {
                 wrapping: e.target.value as keyof typeof wrappingType,
               },
-            }); }
-          }
+            });
+          }}
         >
           {Object.entries(wrappingType).map(([code, value]) => (
             <option key={code} value={code}>
@@ -167,9 +167,9 @@ const UseReducerForm: FC = () => {
         </Select>
         <Checkbox
           checked={isAgreed}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { setIsAgreed(e.target.checked); }
-          }
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setIsAgreed(e.target.checked);
+          }}
           mt={4}
         >
           規約に同意する

@@ -1,4 +1,9 @@
-import { type FC, useState, type ChangeEvent, type SyntheticEvent } from 'react';
+import {
+  type FC,
+  useState,
+  type ChangeEvent,
+  type SyntheticEvent,
+} from 'react';
 
 import {
   Box,
@@ -59,18 +64,18 @@ const UseStateForm: FC = () => {
           size="md"
           maxLength={7}
           value={zipcode}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { setZipcode(e.target.value); }
-          }
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setZipcode(e.target.value);
+          }}
         />
         <FormLabel htmlFor="prefecture" mt={4}>
           都道府県
         </FormLabel>
-        <Select onChange={
-          (e: ChangeEvent<HTMLSelectElement>) => {
+        <Select
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
             setPrefecture(e.target.value as keyof typeof prefectures);
-          }
-        }>
+          }}
+        >
           {prefectures.map((pref) => (
             <option key={pref} value={pref}>
               {pref}
@@ -83,9 +88,9 @@ const UseStateForm: FC = () => {
         <Input
           size="md"
           value={city}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { setCity(e.target.value); }
-          }
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setCity(e.target.value);
+          }}
         />
         <FormLabel htmlFor="address" mt={4}>
           番地
@@ -93,9 +98,9 @@ const UseStateForm: FC = () => {
         <Input
           size="md"
           value={address}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { setAddress(e.target.value); }
-          }
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setAddress(e.target.value);
+          }}
         />
         <FormLabel htmlFor="building" mt={4}>
           建物名・部屋番号
@@ -103,17 +108,17 @@ const UseStateForm: FC = () => {
         <Input
           size="md"
           value={building}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            { setBuilding(e.target.value); }
-          }
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setBuilding(e.target.value);
+          }}
         />
         <FormLabel htmlFor="wrapping" mt={4}>
           包装オプション
         </FormLabel>
         <Select
-          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            { setWrapping(e.target.value as keyof typeof wrappingType); }
-          }
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+            setWrapping(e.target.value as keyof typeof wrappingType);
+          }}
           value={wrapping}
         >
           {Object.entries(wrappingType).map(([code, value]) => (
@@ -124,7 +129,9 @@ const UseStateForm: FC = () => {
         </Select>
         <Checkbox
           checked={isAgreed}
-          onChange={(e) => { setIsAgreed(e.target.checked); }}
+          onChange={(e) => {
+            setIsAgreed(e.target.checked);
+          }}
         >
           規約に同意する
         </Checkbox>
