@@ -43,6 +43,13 @@ const UseReducerForm: FC = () => {
     dispatch({ type: reset });
   };
 
+  const dispatchUpdated = (payload: Partial<typeof formState>) => {
+    dispatch({
+      type: updated,
+      payload,
+    });
+  };
+
   return (
     <Box p={4} w="md" borderWidth="1px" borderRadius="lg" boxShadow="base">
       <form onSubmit={handleSubmit}>
@@ -54,9 +61,8 @@ const UseReducerForm: FC = () => {
           maxLength={7}
           value={formState.zipCode}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatch({
-              type: updated,
-              payload: { zipCode: e.target.value },
+            dispatchUpdated({
+              zipCode: e.target.value,
             });
           }}
         />
@@ -67,9 +73,8 @@ const UseReducerForm: FC = () => {
           options={prefectures.map((pref) => ({ value: pref, label: pref }))}
           value={{ value: formState.prefecture, label: formState.prefecture }}
           onChange={(prefObj) => {
-            dispatch({
-              type: updated,
-              payload: { prefecture: prefObj?.value ?? '' },
+            dispatchUpdated({
+              prefecture: prefObj?.value ?? '',
             });
           }}
         />
@@ -81,9 +86,8 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.city}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatch({
-              type: updated,
-              payload: { city: e.target.value },
+            dispatchUpdated({
+              city: e.target.value,
             });
           }}
         />
@@ -94,9 +98,8 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.address}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatch({
-              type: updated,
-              payload: { address: e.target.value },
+            dispatchUpdated({
+              address: e.target.value,
             });
           }}
         />
@@ -107,10 +110,7 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.building}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatch({
-              type: updated,
-              payload: { building: e.target.value },
-            });
+            dispatchUpdated({ building: e.target.value });
           }}
         />
         <FormLabel htmlFor="wrapping" mt={4}>
@@ -119,11 +119,8 @@ const UseReducerForm: FC = () => {
         <Select
           value={formState.wrapping}
           onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-            dispatch({
-              type: updated,
-              payload: {
-                wrapping: e.target.value as keyof typeof wrappingType,
-              },
+            dispatchUpdated({
+              wrapping: e.target.value as keyof typeof wrappingType,
             });
           }}
         >
