@@ -19,6 +19,7 @@ import {
 import ReactSelect from 'react-select';
 
 import { wrappingType, prefectures } from 'schemas/constants';
+import { type DeliveryForm } from 'schemas/deliveryForm';
 import { deliveryFormSlice, initialState } from 'stores/actions';
 
 const { reset, updated } = deliveryFormSlice.actions;
@@ -44,7 +45,7 @@ const UseReducerForm: FC = () => {
     dispatch({ type: reset });
   };
 
-  const dispatchUpdated = (payload: Partial<typeof formState>) => {
+  const dispatchUpdated = (payload: Partial<DeliveryForm>) => {
     dispatch({
       type: updated,
       payload,
