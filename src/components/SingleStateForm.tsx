@@ -43,6 +43,7 @@ const UseReducerForm: FC = () => {
 
   const handleReset = (e: SyntheticEvent) => {
     e.stopPropagation();
+    setIsAgreed(false);
     setFormState(initialState);
   };
 
