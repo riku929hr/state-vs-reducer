@@ -21,6 +21,8 @@ import ReactSelect from 'react-select';
 import { wrappingType, prefectures } from 'schemas/constants';
 import { deliveryFormSlice, initialState } from 'stores/actions';
 
+const { reset, updated } = deliveryFormSlice.actions;
+
 /**
  * main component
  */
@@ -30,8 +32,6 @@ const UseReducerForm: FC = () => {
     initialState,
   );
   const [isAgreed, setIsAgreed] = useState<boolean>(false);
-
-  const { reset, updated } = deliveryFormSlice.actions;
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
