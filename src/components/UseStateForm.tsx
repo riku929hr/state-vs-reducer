@@ -133,7 +133,7 @@ const UseStateForm: FC = () => {
             setIsAgreed(e.target.checked);
           }}
         >
-          規約に同意する
+          内容を確認しました
         </Checkbox>
         <ButtonGroup my={3} w="xs">
           <Button w="30%" colorScheme="orange" variant="solid" type="submit">

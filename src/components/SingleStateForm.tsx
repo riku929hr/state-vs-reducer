@@ -34,7 +34,7 @@ const initialState: DeliveryForm = {
  */
 const UseReducerForm: FC = () => {
   const [formState, setFormState] = useState<DeliveryForm>(initialState);
-  const [isAgreed, setIsAgreed] = useState<boolean>(false);
+  const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ const UseReducerForm: FC = () => {
 
   const handleReset = (e: SyntheticEvent) => {
     e.stopPropagation();
-    setIsAgreed(false);
+    setIsConfirmed(false);
     setFormState(initialState);
   };
 
@@ -136,13 +136,13 @@ const UseReducerForm: FC = () => {
           ))}
         </Select>
         <Checkbox
-          checked={isAgreed}
+          checked={isConfirmed}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setIsAgreed(e.target.checked);
+            setIsConfirmed(e.target.checked);
           }}
           mt={4}
         >
-          規約に同意する
+          内容を確認しました
         </Checkbox>
         <ButtonGroup my={3} w="xs">
           <Button
@@ -150,7 +150,7 @@ const UseReducerForm: FC = () => {
             colorScheme="orange"
             variant="solid"
             type="submit"
-            isDisabled={!isAgreed}
+            isDisabled={!isConfirmed}
           >
             送信
           </Button>
