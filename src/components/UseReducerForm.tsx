@@ -31,21 +31,21 @@ const initialState: DeliveryForm = {
   wrapping: 'none',
 };
 
-const ActionTypes = {
+const ActionType = {
   reset: 'deliveryForm/reset',
   updated: 'deliveryForm/updated',
 } as const;
 
 type Action = {
-  type: ValueOf<typeof ActionTypes>;
+  type: ValueOf<typeof ActionType>;
   payload?: Partial<DeliveryForm>;
 };
 
 const reducer = (state: DeliveryForm, action: Action): DeliveryForm => {
   switch (action.type) {
-    case ActionTypes.reset:
+    case ActionType.reset:
       return initialState;
-    case ActionTypes.updated:
+    case ActionType.updated:
       return {
         ...state,
         ...action.payload,
@@ -57,6 +57,15 @@ const reducer = (state: DeliveryForm, action: Action): DeliveryForm => {
     }
   }
 };
+
+const reset = (): Action => ({
+  type: ActionType.reset,
+});
+
+const updated = (payload: Partial<DeliveryForm>): Action => ({
+  type: ActionType.updated,
+  payload,
+});
 
 /**
  * main component
@@ -73,7 +82,7 @@ const UseReducerForm: FC = () => {
   const handleReset = (e: SyntheticEvent) => {
     e.stopPropagation();
     setIsConfirmed(false);
-    dispatch({ type: ActionTypes.reset });
+    dispatch(reset());
   };
 
   return (
@@ -87,10 +96,7 @@ const UseReducerForm: FC = () => {
           maxLength={7}
           value={formState.zipCode}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatch({
-              type: ActionTypes.updated,
-              payload: { zipCode: e.target.value },
-            });
+            dispatch(updated({ zipCode: e.target.value }));
           }}
         />
         <FormLabel htmlFor="prefecture" mt={4}>
@@ -100,10 +106,7 @@ const UseReducerForm: FC = () => {
           options={prefectures.map((pref) => ({ value: pref, label: pref }))}
           value={{ value: formState.prefecture, label: formState.prefecture }}
           onChange={(prefObj) => {
-            dispatch({
-              type: ActionTypes.updated,
-              payload: { prefecture: prefObj?.value ?? '' },
-            });
+            dispatch(updated({ prefecture: prefObj?.value ?? '' }));
           }}
         />
 
@@ -114,10 +117,7 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.city}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatch({
-              type: ActionTypes.updated,
-              payload: { city: e.target.value },
-            });
+            dispatch(updated({ city: e.target.value }));
           }}
         />
         <FormLabel htmlFor="address" mt={4}>
@@ -127,10 +127,7 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.address}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatch({
-              type: ActionTypes.updated,
-              payload: { address: e.target.value },
-            });
+            dispatch(updated({ address: e.target.value }));
           }}
         />
         <FormLabel htmlFor="building" mt={4}>
@@ -140,10 +137,7 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.building}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatch({
-              type: ActionTypes.updated,
-              payload: { building: e.target.value },
-            });
+            dispatch(updated({ building: e.target.value }));
           }}
         />
         <FormLabel htmlFor="wrapping" mt={4}>
@@ -152,12 +146,11 @@ const UseReducerForm: FC = () => {
         <Select
           value={formState.wrapping}
           onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-            dispatch({
-              type: ActionTypes.updated,
-              payload: {
+            dispatch(
+              updated({
                 wrapping: e.target.value as keyof typeof wrappingType,
-              },
-            });
+              }),
+            );
           }}
         >
           {Object.entries(wrappingType).map(([code, value]) => (
@@ -167,7 +160,7 @@ const UseReducerForm: FC = () => {
           ))}
         </Select>
         <Checkbox
-          checked={isConfirmed}
+          isChecked={isConfirmed}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setIsConfirmed(e.target.checked);
           }}

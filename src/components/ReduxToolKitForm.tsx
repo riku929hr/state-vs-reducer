@@ -42,14 +42,11 @@ const ReduxToolKitForm: FC = () => {
   const handleReset = (e: SyntheticEvent) => {
     e.stopPropagation();
     setIsConfirmed(false);
-    dispatch({ type: reset });
+    dispatch(reset());
   };
 
   const handleFormChange = (payload: Partial<DeliveryForm>) => {
-    dispatch({
-      type: updated,
-      payload,
-    });
+    dispatch(updated(payload));
   };
 
   return (
@@ -133,7 +130,7 @@ const ReduxToolKitForm: FC = () => {
           ))}
         </Select>
         <Checkbox
-          checked={isConfirmed}
+          isChecked={isConfirmed}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setIsConfirmed(e.target.checked);
           }}
