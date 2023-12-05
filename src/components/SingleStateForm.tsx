@@ -136,7 +136,7 @@ const UseReducerForm: FC = () => {
           ))}
         </Select>
         <Checkbox
-          checked={isConfirmed}
+          isChecked={isConfirmed}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setIsConfirmed(e.target.checked);
           }}

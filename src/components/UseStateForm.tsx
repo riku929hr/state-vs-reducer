@@ -129,7 +129,7 @@ const UseStateForm: FC = () => {
           ))}
         </Select>
         <Checkbox
-          checked={isConfirmed}
+          isChecked={isConfirmed}
           onChange={(e) => {
             setIsConfirmed(e.target.checked);
           }}
