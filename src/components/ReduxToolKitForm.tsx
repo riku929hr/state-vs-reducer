@@ -27,7 +27,7 @@ const { reset, updated } = deliveryFormSlice.actions;
 /**
  * main component
  */
-const UseReducerForm: FC = () => {
+const ReduxToolKitForm: FC = () => {
   const [formState, dispatch] = useReducer(
     deliveryFormSlice.reducer,
     initialState,
@@ -45,7 +45,7 @@ const UseReducerForm: FC = () => {
     dispatch({ type: reset });
   };
 
-  const dispatchUpdated = (payload: Partial<DeliveryForm>) => {
+  const handleFormChange = (payload: Partial<DeliveryForm>) => {
     dispatch({
       type: updated,
       payload,
@@ -63,7 +63,7 @@ const UseReducerForm: FC = () => {
           maxLength={7}
           value={formState.zipCode}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatchUpdated({
+            handleFormChange({
               zipCode: e.target.value,
             });
           }}
@@ -75,7 +75,7 @@ const UseReducerForm: FC = () => {
           options={prefectures.map((pref) => ({ value: pref, label: pref }))}
           value={{ value: formState.prefecture, label: formState.prefecture }}
           onChange={(prefObj) => {
-            dispatchUpdated({
+            handleFormChange({
               prefecture: prefObj?.value ?? '',
             });
           }}
@@ -88,7 +88,7 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.city}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatchUpdated({
+            handleFormChange({
               city: e.target.value,
             });
           }}
@@ -100,7 +100,7 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.address}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatchUpdated({
+            handleFormChange({
               address: e.target.value,
             });
           }}
@@ -112,7 +112,7 @@ const UseReducerForm: FC = () => {
           size="md"
           value={formState.building}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            dispatchUpdated({ building: e.target.value });
+            handleFormChange({ building: e.target.value });
           }}
         />
         <FormLabel htmlFor="wrapping" mt={4}>
@@ -121,7 +121,7 @@ const UseReducerForm: FC = () => {
         <Select
           value={formState.wrapping}
           onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-            dispatchUpdated({
+            handleFormChange({
               wrapping: e.target.value as keyof typeof wrappingType,
             });
           }}
@@ -165,4 +165,4 @@ const UseReducerForm: FC = () => {
   );
 };
 
-export default UseReducerForm;
+export default ReduxToolKitForm;
