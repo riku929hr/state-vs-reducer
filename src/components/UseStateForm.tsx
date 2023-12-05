@@ -26,7 +26,7 @@ const UseStateForm: FC = () => {
   const [address, setAddress] = useState<string>('');
   const [building, setBuilding] = useState<string>('');
   const [wrapping, setWrapping] = useState<keyof typeof wrappingType>('none');
-  const [isAgreed, setIsAgreed] = useState<boolean>(false);
+  const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -44,14 +44,15 @@ const UseStateForm: FC = () => {
     // e.g.) const response = postForm(data);
   };
 
-  const handleReset = () => {
+  const handleReset = (e: SyntheticEvent) => {
+    e.stopPropagation();
     setZipcode('');
     setPrefecture(undefined);
     setCity('');
     setAddress('');
     setBuilding('');
     setWrapping('none');
-    setIsAgreed(false);
+    setIsConfirmed(false);
   };
 
   return (
@@ -128,9 +129,9 @@ const UseStateForm: FC = () => {
           ))}
         </Select>
         <Checkbox
-          checked={isAgreed}
+          checked={isConfirmed}
           onChange={(e) => {
-            setIsAgreed(e.target.checked);
+            setIsConfirmed(e.target.checked);
           }}
         >
           内容を確認しました
