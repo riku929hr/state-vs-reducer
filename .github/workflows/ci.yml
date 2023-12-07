@@ -6,7 +6,7 @@ on:
         - main
 jobs:
   static-analisys:
-    name: run ESLint
+    name: static-analisys
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -17,6 +17,8 @@ jobs:
           node-version: 20
       - name: yarn install
         run: yarn install
+      - name: run prettier
+        run: yarn format:check
       - name: run ESLint
         run: yarn lint
       - name: run tsc
