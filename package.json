@@ -14,6 +14,7 @@
     "lint": "npm run --silent lint:style; npm run --silent lint:es",
     "lint:fix": "npm run --silent lint:style:fix; npm run --silent lint:es:fix",
     "format": "prettier --write --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,json,gql,graphql}'",
+    "format:check": "prettier --check --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,json,gql,graphql}'",
     "fix": "npm run --silent format; npm run --silent lint:fix",
     "preinstall": "npx typesync || :",
     "prepare": "npx simple-git-hooks || :"
