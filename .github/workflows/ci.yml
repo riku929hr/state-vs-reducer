@@ -5,13 +5,19 @@ on:
       branches:
         - main
 jobs:
-  eslint:
+  static-analisys:
     name: run ESLint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup-node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: yarn install
-      - run: yarn lint
+      - name: yarn install
+        run: yarn install
+      - name: run ESLint
+        run: yarn lint
+      - name: run tsc
+        run: tsc --noEmit
