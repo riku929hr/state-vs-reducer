@@ -16,6 +16,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  static-analisys:
+    uses: ./ci.yml
   deploy:
     environment:
       name: github-pages

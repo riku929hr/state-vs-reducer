@@ -1,9 +1,9 @@
 name: ci
 on:
   pull_request:
-    push:
-      branches:
-        - main
+  push:
+    branches:
+      - main
 jobs:
   static-analisys:
     name: static-analisys
